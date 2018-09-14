@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,5 +19,12 @@ public class BichosActivity extends AppCompatActivity {
 
         String bichosArray[] = getResources().getStringArray(R.array.bichos);
         List<String> listBichos = Arrays.asList(bichosArray);
+
+        LinearLayout root = findViewById(R.id.rootBichos);
+        for (String bicho : listBichos) {
+            TextView textView = new TextView(this);
+            textView.setText(bicho);
+            root.addView(textView);
+        }
     }
 }
