@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.Arrays;
@@ -17,14 +19,12 @@ public class BichosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState, persistentState);
         setContentView(R.layout.activity_bichos);
 
-        String bichosArray[] = getResources().getStringArray(R.array.bichos);
-        List<String> listBichos = Arrays.asList(bichosArray);
+        String[] bichosArray = getResources().getStringArray(R.array.bichos);
 
-        LinearLayout root = findViewById(R.id.rootBichos);
-        for (String bicho : listBichos) {
-            TextView textView = new TextView(this);
-            textView.setText(bicho);
-            root.addView(textView);
-        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, bichosArray);
+
+        ListView listView = findViewById(R.id.rootBichos);
+        listView.setAdapter(adapter);
+
     }
 }

@@ -2,7 +2,9 @@ package br.com.wagnerapps.tupicionario;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.Arrays;
@@ -15,14 +17,11 @@ public class PovosNativosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_povos_nativos);
 
-        String povosNativosArray[] = getResources().getStringArray(R.array.povos_nativos);
-        List<String> listPovosNativos = Arrays.asList(povosNativosArray);
+        String[] povosNativosArray = getResources().getStringArray(R.array.culinaria);
 
-        LinearLayout root = findViewById(R.id.rootPovosNativos);
-        for (String povosNativos : listPovosNativos) {
-            TextView textView = new TextView(this);
-            textView.setText(povosNativos);
-            root.addView(textView);
-        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, povosNativosArray);
+
+        ListView listView = findViewById(R.id.rootPovosNativos);
+        listView.setAdapter(adapter);
     }
 }

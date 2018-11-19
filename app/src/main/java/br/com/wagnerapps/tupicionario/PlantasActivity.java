@@ -2,7 +2,9 @@ package br.com.wagnerapps.tupicionario;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.Arrays;
@@ -15,14 +17,11 @@ public class PlantasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plantas);
 
-        String plantasArray[] = getResources().getStringArray(R.array.plantas);
-        List<String> listPlantas = Arrays.asList(plantasArray);
+        String[] plantasArray = getResources().getStringArray(R.array.plantas);
 
-        LinearLayout root = findViewById(R.id.rootPlantas);
-        for (String plantas : listPlantas) {
-            TextView textView = new TextView(this);
-            textView.setText(plantas);
-            root.addView(textView);
-        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, plantasArray);
+
+        ListView listView = findViewById(R.id.rootPlantas);
+        listView.setAdapter(adapter);
     }
 }
